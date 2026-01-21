@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container py-5">
+
+    {% if perfil %}
+
+        <h2 class="mb-5 text-center fw-bold">Venta de Garage</h2>
+
+        {% if ventagarage %}
+            <div class="row g-4 justify-content-center">
+                {% for item in ventagarage %}
+                <div class="col-md-6">
+                    <div class="card producto-card h-100 p-4">
+
+                        <div class="row align-items-center">
+
+                            
+                            <div class="col-md-4 text-center mb-3 mb-md-0">
+                                {% if item.rutaproducto %}
+                                    <img src="{{ item.rutaproducto.url }}"
+                                         alt="{{ item.nombreproducto }}"
+                                         class="img-fluid rounded-3 shadow-sm">
+                                {% endif %}
+                            </div>
+
+                            
+                            <div class="col-md-8">
+                                <h5 class="fw-bold mb-2">
+                                    <i class="bi bi-box-seam me-2 text-primary"></i>
+                                    {{ item.nombreproducto }}
+                                </h5>
+
+                                <p class="mb-1 text-muted">
+                                    <i class="bi bi-check-circle me-2"></i>
+                                    {{ item.estadoproducto }}
+                                </p>
+
+                                <p class="mb-1 text-muted">
+                                    <i class="bi bi-cash-coin me-2"></i>
+                                    ${{ item.valordelbien }}
+                                </p>
+
+                                <p class="mb-3 text-muted">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    {{ item.descripcion }}
+                                </p>
+
+                                {% if item.rutaproducto %}
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ item.rutaproducto.url }}"
+                                       target="_blank"
+                                       class="btn btn-outline-primary fw-semibold">
+                                        <i class="bi bi-image me-1"></i>
+                                        Ver imagen
+                                    </a>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-muted">
+                No hay productos en venta registrados.
+            </p>
+        {% endif %}
+
+    {% else %}
+        <div class="text-center py-5">
+            <h4 class="text-muted fw-semibold">
+                Este perfil no se encuentra activo.
+            </h4>
+        </div>
+    {% endif %}
+
+</main>
+
+<style>
+/*probando*/ 
+.producto-card {
+    background: linear-gradient(135deg, #f8fafc, #eef2f7);
+    border-left: 4px solid #2563eb;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.2);
+}
+
+
+.estado-badge {
+    background-color: #e8f0fe;
+    color: #2563eb;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+</style>
+{% endblock %}
