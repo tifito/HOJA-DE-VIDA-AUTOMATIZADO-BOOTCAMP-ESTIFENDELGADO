@@ -1,2 +1,0 @@
-# HOJA-DE-VIDA-AUTOMATIZADO-BOOTCAMP
-Subir la hoja de vida 
